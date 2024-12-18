@@ -1,3 +1,4 @@
+/* ========== RESET ========== */
 * {
     margin: 0;
     padding: 0;
@@ -5,10 +6,14 @@
 }
 /* Remove a margem e o preenchimento padrão de todos os elementos e define o modelo de box-sizing como border-box. */
 
+/* ========== ROOT VARIABLES ========== */
+
 :root {
     --primary: #ff0000;
 }
 /* Define a cor vermelha como uma variável CSS chamada --primary. */
+
+/* ========== BASE STYLES ========== */
 
 body {
     position: relative;
@@ -19,6 +24,8 @@ body {
     overflow: hidden;
 }
 /* Define o corpo da página com posição relativa, cor de fundo preta, usa a fonte 'Roboto', ocupa 100% da largura e tem altura mínima de 100vh, com overflow oculto. */
+
+/* ========== HEADER ========== */
 
 header {
     position: absolute;
@@ -34,54 +41,56 @@ header {
 }
 /* O cabeçalho está posicionado de forma absoluta no topo e à esquerda, ocupando 100% da largura, com um layout flexível, espaçamento interno de 20px nas laterais, borda inferior semitransparente e z-index 20. */
 
+/**/
 
-/* Estilo do botão do menu */
 .menu-toggle {
+    display: none; /* Inicialmente escondido (mostrado apenas em telas menores) */
     background: none;
     border: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
     cursor: pointer;
-    z-index: 10;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .menu-toggle span {
     display: block;
-    width: 100%;
-    height: 4px;
-    background: #333;
-    border-radius: 2px;
-    transition: all 0.3s;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    transition: transform 0.3s, opacity 0.3s;
 }
 
-/* Esconde o menu inicialmente em telas pequenas */
-/* Fundo do menu em telas pequenas */
-nav ul {
-    display: none;
+/* Navegação principal */
+.nav {
+    display: none; /* Escondida por padrão */
     flex-direction: column;
-    background: #333; /* Fundo escuro para contraste */
-    color: #fff; /* Garante que o texto seja visível */
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%; /* Preenche a largura */
-    z-index: 9;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav.active {
+    display: flex; /* Exibida quando ativa em telas pequenas */
+}
+
+nav ul {
+    display: flex; /* Exibida para telas maiores */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-nav ul li {
-    padding: 10px 15px;
-    text-align: center;
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
 }
 
-/* Exibe o menu quando ativo */
-nav ul.active {
-    display: flex;
+nav ul li a:hover {
+    color: var(--primary);
 }
 
 .logo img {
@@ -120,23 +129,8 @@ nav ul.active {
 }
 /* Ao passar o mouse sobre os links de navegação, a cor muda para a cor primária definida (--primary). */
 
-/* Estilo básico */
-.login-btn {
-    padding: 10px 20px; /* Espaçamento interno */
-    background-color: var(--primary); /* Cor principal */
-    color: #fff; /* Texto branco */
-    border: none; /* Remove a borda padrão */
-    border-radius: 25px; /* Bordas arredondadas */
-    font-size: 1rem; /* Tamanho do texto */
-    font-weight: 500; /* Peso médio */
-    letter-spacing: 1px; /* Espaçamento entre letras */
-    text-transform: uppercase; /* Texto em maiúsculas */
-    cursor: pointer; /* Ícone de ponteiro */
-    transition: all 0.3s ease; /* Suaviza as animações */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para profundidade */
-}
+/* ========== INPUTS ========== */ 
 
-/*****   CONTAINER DO GRUPO   *****/
 .input-group {
     display: flex; /* Organiza elementos em linha */
     align-items: center; /* Centraliza verticalmente */
@@ -144,7 +138,6 @@ nav ul.active {
     width: 100%; /* Adapta ao tamanho do container */
 }
 
-/* Input */
 #email-input {
     flex: 1; /* Faz o input ocupar o máximo de espaço */
     padding: 10px 15px;
@@ -157,50 +150,47 @@ nav ul.active {
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
-
-/* Placeholder */
+/
 #email-input::placeholder {
     color: #aaa;
     font-style: italic;
 }
 
-/* Foco no input */
 #email-input:focus {
     border-color: var(--primary);
     background-color: #fff;
     box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
 }
 
-/* Botão */
+/* ========== BUTTONS ========== */
+
+/*Botão Login*/
 .login-btn {
     background-color: var(--primary);
-    color: #fff;
+    color: var(--text-light);
     font-size: 1rem;
     font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     padding: 10px 20px;
     margin-right: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
 }
 
-/* Hover no botão */
 .login-btn:hover {
-    background-color: #fff;
+    background-color: var(--text-light);
     color: var(--primary);
     transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Foco no botão */
 .login-btn:focus {
     outline: 2px solid var(--primary);
     outline-offset: 4px;
 }
 
-
-/*****   BOTÃO SEARCH   *****/
+/*Botão Search*/
 .search {
     position: relative;
     width: 130px;
@@ -237,8 +227,7 @@ nav ul.active {
 }
 /* O placeholder do campo de busca é branco, em maiúsculas, com espaçamento à esquerda e peso de fonte leve. */
 
-/*****   BOTÕES "SAIBA MAIS"   *****/
-/* Botões "Saiba Mais" */
+/*Botão Saiba Mais*/
 button[data-modal] {
     background-color: var(--primary);
     color: #fff;
@@ -251,7 +240,6 @@ button[data-modal] {
     transition: all 0.3s ease;
 }
 
-/* Hover no botão */
 button[data-modal]:hover {
     background-color: #fff;
     color: var(--primary);
@@ -259,14 +247,13 @@ button[data-modal]:hover {
     transform: scale(1.05);
 }
 
-/* Foco no botão */
 button[data-modal]:focus {
     outline: 2px solid var(--primary);
     outline-offset: 4px;
 }
 
-/*****   MODAL   *****/
-/* Estilo geral do modal */
+/* ========== MODAL ========== */
+
 .modal {
     display: none; /* Oculto por padrão */
     position: fixed;
@@ -282,7 +269,6 @@ button[data-modal]:focus {
     overflow: hidden;
 }
 
-/* Conteúdo do modal */
 .modal-content {
     padding: 20px;
     font-size: 1rem;
@@ -290,7 +276,6 @@ button[data-modal]:focus {
     line-height: 1.5;
 }
 
-/* Botão de fechar o modal */
 .modal-close {
     position: absolute;
     top: 10px;
@@ -319,12 +304,15 @@ button[data-modal]:focus {
     z-index: 999;
 }
 
+/* ========== BANNER ========== */
+
 .banner .left, .banner .right {
     z-index: 10; /* Certifique-se de que o conteúdo tenha um z-index superior ao das imagens */
     position: relative; /* Importante para que o z-index seja aplicado */
 }
 
-/*****   SWIPER   *****/
+/* ========== SWIPER ========== */
+
 .swiper {
     width: 100%;
     height: 100vh;
@@ -576,73 +564,99 @@ button[data-modal]:focus {
 }
 /* O iframe à direita do banner tem largura máxima de 450px e altura máxima de 250px. */
 
-/*****   MEDIA QUERIES   ****/
-/*Telas pequenas*/
+
+
+
+/* ========== MEDIA QUERIES ========== */
+
+/* Telas pequenas (até 768px) */
 @media (max-width: 768px) {
     header {
-        flex-direction: column; /* Coloca o conteúdo do cabeçalho em coluna */
-        padding: 20px;
+        flex-direction: column; /* Organiza os itens em coluna */
+        align-items: center; /* Centraliza os itens */
+        gap: 15px; /* Aumenta o espaçamento entre os itens */
     }
 
-    .nav {
-        flex-direction: column;
-        align-items: center;
+    .logo img {
+        max-width: 80px; /* Ajusta o tamanho do logo para telas menores */
+        height: auto;
+    }
+
+    .menu-toggle {
+        align-self: flex-end; /* Alinha o menu hamburguer à direita */
+    }
+
+    .input-group {
+        width: 100%; /* O input e botão ocupam toda a largura */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .input-group input {
+        flex: 1; /* O input ocupa o espaço restante */
+        margin-right: 10px; /* Espaçamento entre o input e o botão */
     }
 
     .search {
-        width: 100%; /* A barra de busca ocupa 100% da largura */
-        margin: 10px 0;
+        width: 100%; /* A barra de pesquisa ocupa toda a largura */
+        margin-top: 10px; /* Espaçamento adicional abaixo do input */
+    }
+}
+
+/* Telas maiores (a partir de 769px) */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none; /* Esconde o botão hamburguer */
     }
 
-    .banner img {
-        max-width: 100%; /* Ajusta as imagens para caberem na tela */
-        height: auto; /* Mantém a proporção */
+    .nav {
+        display: flex; /* Mostra a navegação padrão */
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Telas médias (769px - 1199px) */
+@media (min-width: 769px) and (max-width: 1199px) {
+    header {
+        padding: 20px 80px;
+    }
+
+    nav ul {
+        flex-direction: row;
+        justify-content: space-around;
     }
 
     .banner h1 {
-        font-size: 2.5em; /* Reduz o tamanho do título */
+        font-size: 4em;
     }
 
     .swiper .swiper-button-prev,
     .swiper .swiper-button-next {
-        width: 40px; /* Reduz os botões de navegação */
-        height: 40px;
-    }
-}
-
-/*Menu hamburguer para telas menosres*/
-@media (max-width: 768px) {
-    .nav {
-        display: none; /* Esconde a navegação */
+        width: 60px;
+        height: 60px;
     }
 
     .menu-icon {
-        display: block;
-        cursor: pointer;
+        display: none; /* Esconde o menu hamburguer */
     }
 }
 
-/* Quando o menu é expandido */
-.nav.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-/*Telas grandes*/
+/* Telas grandes (a partir de 1200px) */
 @media (min-width: 1200px) {
     header {
-        padding: 30px 150px; /* Aumenta o espaço ao redor */
+        padding: 30px 150px;
     }
 
     .banner h1 {
-        font-size: 6em; /* Títulos maiores */
+        font-size: 6em;
     }
 
     .swiper .swiper-button-prev,
     .swiper .swiper-button-next {
-        width: 80px; /* Botões maiores */
+        width: 80px;
         height: 80px;
     }
 
@@ -650,36 +664,8 @@ button[data-modal]:focus {
         max-width: 800px;
         max-height: 800px;
     }
-}
 
-/* Esconde o botão hambúrguer em telas maiores */
-@media (min-width: 768px) {
-    .menu-toggle {
-        display: none; /*Esconde o botão hamburguer*/
-    }
-
-    nav ul {
-        display: flex;
-        flex-direction: row; /*Organiza os itens em linha*/
-        justify-content: center;
-        align-items: center;
-        position: static;
-        background: none;
-        padding: 0; /* Remove espaçamento interno */
-        margin: 0; /* Remove margens */
-        list-style: none; /* Remove estilo de lista */
-    }
-    nav ul li {
-        padding: 0 20px; /* Espaçamento horizontal entre os links */
-    }
-
-    nav ul li a {
-        color: #fff; /* Cor branca para texto */
-        text-decoration: none; /* Remove o sublinhado */
-        font-weight: 400; /* Peso padrão da fonte */
-    }
-
-    nav ul li a:hover {
-        color: var(--primary); /* Cor primária ao passar o mouse */
+    .menu-icon {
+        display: none;
     }
 }
